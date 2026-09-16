@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sistema de gestión de pedidos y ventas para un local de comida.">
+  <title>Comanda | Gestión de pedidos y ventas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="encabezado">
+    <div class="contenedor barra-navegacion">
+      <a class="marca" href="#inicio">COMANDA<span>.</span></a>
+      <nav aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#pedidos">Pedidos</a>
+        <a href="#ventas">Ventas</a>
+      </nav>
+      <a class="boton boton-pequeno" href="#nuevo-pedido">Nuevo pedido</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="contenedor hero-contenido">
+        <div>
+          <p class="etiqueta">Sistema de gestión para tu local</p>
+          <h1>Todo pedido bajo control.</h1>
+          <p class="hero-texto">Centralizá clientes, productos, pedidos y ventas en un solo lugar para trabajar con más orden y atender mejor.</p>
+          <div class="acciones">
+            <a class="boton" href="#nuevo-pedido">Registrar pedido</a>
+            <a class="enlace" href="#como-funciona">Conocer el sistema <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <aside class="resumen" aria-label="Resumen de actividad">
+          <div class="resumen-cabecera"><span>Resumen de hoy</span><span class="estado">● En actividad</span></div>
+          <div class="resumen-total"><strong>$ 186.400</strong><span>Ventas del día</span></div>
+          <div class="metricas">
+            <div><strong>24</strong><span>Pedidos</span></div>
+            <div><strong>08</strong><span>En preparación</span></div>
+            <div><strong>16</strong><span>Entregados</span></div>
+          </div>
+          <div class="barra"><span></span></div>
+          <p class="nota">La información se actualiza con cada pedido registrado.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="seccion" id="como-funciona">
+      <div class="contenedor">
+        <div class="encabezado-seccion"><div><p class="etiqueta">Organización diaria</p><h2>Una vista clara del negocio.</h2></div><p>Las herramientas principales para que el equipo pueda registrar, consultar y actualizar la información del local.</p></div>
+        <div class="modulos">
+          <article class="modulo modulo-destacado"><span class="icono">01</span><h3>Pedidos</h3><p>Registrá cada pedido con los datos del cliente, productos, cantidades, total y estado.</p><a class="enlace" href="#pedidos">Gestionar pedidos <span aria-hidden="true">→</span></a></article>
+          <article class="modulo"><span class="icono">02</span><h3>Productos y stock</h3><p>Consultá el menú disponible, actualizá precios y controlá el stock de cada producto.</p><a class="enlace" href="#productos">Ver productos <span aria-hidden="true">→</span></a></article>
+          <article class="modulo"><span class="icono">03</span><h3>Ventas</h3><p>Revisá las ventas realizadas y obtené información para tomar mejores decisiones.</p><a class="enlace" href="#ventas">Consultar ventas <span aria-hidden="true">→</span></a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-productos" id="productos">
+      <div class="contenedor">
+        <div class="encabezado-seccion"><div><p class="etiqueta">Menú del local</p><h2>Productos destacados</h2></div><button class="boton-secundario" type="button">+ Agregar producto</button></div>
+        <div class="tabla-contenedor"><table><thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Estado</th></tr></thead><tbody><tr><td><strong>Hamburguesa completa</strong></td><td>Hamburguesas</td><td>$ 5.500</td><td>18 unidades</td><td><span class="etiqueta-estado disponible">Disponible</span></td></tr><tr><td><strong>Pizza muzzarella</strong></td><td>Pizzas</td><td>$ 7.000</td><td>12 unidades</td><td><span class="etiqueta-estado disponible">Disponible</span></td></tr><tr><td><strong>Ensalada de estación</strong></td><td>Platos frescos</td><td>$ 4.800</td><td>03 unidades</td><td><span class="etiqueta-estado bajo">Stock bajo</span></td></tr></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="seccion pedidos-seccion" id="pedidos">
+      <div class="contenedor columnas">
+        <div><p class="etiqueta">Seguimiento</p><h2>Pedidos recientes</h2><p>Consultá el estado de cada pedido desde que ingresa hasta que se entrega.</p></div>
+        <div class="lista-pedidos"><article><div><strong>#00024 · Lucía Fernández</strong><p>2 hamburguesas completas · Envío a domicilio</p></div><span class="etiqueta-estado preparacion">En preparación</span></article><article><div><strong>#00023 · Martín González</strong><p>1 pizza muzzarella · Retira en el local</p></div><span class="etiqueta-estado entregado">Entregado</span></article><article><div><strong>#00022 · Sofía Ramírez</strong><p>1 ensalada de estación · Envío a domicilio</p></div><span class="etiqueta-estado pendiente">Pendiente</span></article></div>
+      </div>
+    </section>
+
+    <section class="seccion ventas-seccion" id="ventas">
+      <div class="contenedor ventas-contenido"><div><p class="etiqueta">Información para decidir</p><h2>Conocé el movimiento de tu local.</h2><p>El registro ordenado permite consultar las ventas diarias, identificar los productos más solicitados y detectar faltantes de stock.</p></div><div class="grafico" aria-label="Gráfico ilustrativo de ventas semanales"><div class="barras"><span style="height: 45%"></span><span style="height: 62%"></span><span style="height: 55%"></span><span style="height: 78%"></span><span style="height: 68%"></span><span style="height: 92%"></span><span style="height: 82%"></span></div><div class="dias"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div></div></div>
+    </section>
+
+    <section class="seccion nuevo-pedido" id="nuevo-pedido">
+      <div class="contenedor formulario-intro"><p class="etiqueta">Próximo paso</p><h2>Preparados para registrar el primer pedido.</h2><p>Esta maqueta define la estructura inicial. En las próximas etapas se incorporarán formularios, persistencia de datos y usuarios.</p><a class="boton" href="#inicio">Volver al inicio</a></div>
+    </section>
+  </main>
+
+  <footer class="pie"><div class="contenedor pie-contenido"><div><a class="marca" href="#inicio">COMANDA<span>.</span></a><p>Sistema de gestión de pedidos y ventas.</p></div><div><p>Trabajo Práctico N.º 1 · Programación IV C</p><p>Lazarte Gastón · Lazarte Karina · Gómez Gonzalo</p></div></div></footer>
+</body>
+</html>
