@@ -70,6 +70,13 @@ Se aplica `box-sizing: border-box` globalmente, junto con `margin`, `padding`, `
 
 Los cambios del TP2 se desarrollan sobre `dev` con commits descriptivos y luego se integran a `main` mediante Pull Request en GitHub. El PR debe ser revisado y asignado a los compañeros del grupo.
 
+## Flujo de trabajo del equipo
+
+1. Crear una rama de trabajo a partir de `dev`.
+2. Realizar cambios y commits descriptivos.
+3. Publicar la rama y abrir un Pull Request hacia `dev` o `main`, según lo acordado por el equipo.
+4. Revisar el código y asignar a los integrantes como colaboradores o revisores.
+
 ## Ejecutar
 
 Abrir `index.html` en un navegador. Esta entrega es una interfaz estática y no requiere dependencias ni servidor.
