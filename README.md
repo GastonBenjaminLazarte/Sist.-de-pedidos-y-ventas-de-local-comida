@@ -64,7 +64,7 @@ El trabajo se realiza en ramas `refactor/*`, luego se integran los cambios en `d
 
 El proyecto está preparado para publicarse en Netlify como sitio estático. En Netlify se debe seleccionar el repositorio de GitHub, usar `dev` o `main` como rama de producción y dejar vacío el comando de build. La URL pública se agrega aquí después de crear el sitio:
 
-`URL_DE_NETLIFY_PENDIENTE`
+https://comanda-sist-pedidos-y-ventas-comida.netlify.app
 
 ## Ejecutar localmente
 
