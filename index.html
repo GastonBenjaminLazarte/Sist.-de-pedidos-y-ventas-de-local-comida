@@ -5,36 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Sistema de gestión de pedidos y ventas para un local de comida.">
   <title>Comanda | Gestión de pedidos y ventas</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="bootstrap-overrides.css">
+  <!-- El CSS original del TP2 se conserva comentado en style.css. -->
 </head>
 <body>
-  <header class="encabezado">
-    <div class="contenedor barra-navegacion">
-      <a class="marca" href="#inicio">COMANDA<span>.</span></a>
-      <nav aria-label="Navegación principal">
-        <a href="#inicio">Inicio</a>
-        <a href="#acceso">Acceso</a>
-        <a href="#productos">Productos</a>
-        <a href="#pedidos">Pedidos</a>
-        <a href="#ventas">Ventas</a>
-      </nav>
-      <a class="boton boton-pequeno" href="#nuevo-pedido">Nuevo pedido</a>
-    </div>
+  <header class="encabezado sticky-top">
+    <nav class="navbar navbar-expand-lg bg-white border-bottom" aria-label="Navegación principal">
+      <div class="container py-2">
+        <a class="navbar-brand marca" href="#inicio">COMANDA<span>.</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-3">
+            <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#acceso">Acceso</a></li>
+            <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#pedidos">Pedidos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#ventas">Ventas</a></li>
+          </ul>
+          <a class="btn btn-primary" href="#nuevo-pedido">Nuevo pedido</a>
+        </div>
+      </div>
+    </nav>
   </header>
 
   <main id="inicio">
-    <section class="hero">
-      <div class="contenedor hero-contenido">
+    <section class="hero py-5 py-lg-6">
+      <div class="container hero-contenido row align-items-center g-5 mx-auto">
         <div>
           <p class="etiqueta">Sistema de gestión para tu local</p>
-          <h1>Todo pedido bajo control.</h1>
+            <h1 class="display-4">Todo pedido bajo control.</h1>
           <p class="hero-texto">Centralizá clientes, productos, pedidos y ventas en un solo lugar para trabajar con más orden y atender mejor.</p>
-          <div class="acciones">
-            <a class="boton" href="#nuevo-pedido">Registrar pedido</a>
+          <div class="acciones d-flex flex-wrap align-items-center gap-3">
+              <a class="btn btn-primary" href="#nuevo-pedido">Registrar pedido</a>
             <a class="enlace" href="#como-funciona">Conocer el sistema <span aria-hidden="true">→</span></a>
           </div>
         </div>
-        <aside class="resumen" aria-label="Resumen de actividad">
+        <aside class="resumen card border-0 shadow" aria-label="Resumen de actividad">
           <div class="resumen-cabecera"><span>Resumen de hoy</span><span class="estado">● En actividad</span></div>
           <div class="resumen-total"><strong>$ 186.400</strong><span>Ventas del día</span></div>
           <div class="metricas">
@@ -43,37 +52,37 @@
             <div><strong>16</strong><span>Entregados</span></div>
           </div>
           <div class="barra"><span></span></div>
-          <p class="nota">La información se actualiza con cada pedido registrado.</p>
+          <p class="nota text-muted">La información se actualiza con cada pedido registrado.</p>
         </aside>
       </div>
     </section>
 
-    <section class="seccion acceso-seccion" id="acceso">
-      <div class="contenedor acceso-contenido">
+    <section class="seccion acceso-seccion py-5" id="acceso">
+      <div class="container acceso-contenido row align-items-center g-5 mx-auto">
         <div>
           <p class="etiqueta">Ingreso al sistema</p>
-          <h2>Una entrada para cada usuario.</h2>
+            <h2 class="h4">Una entrada para cada usuario.</h2>
           <p>El acceso determina las opciones disponibles según el tipo de cuenta y mantiene organizada la información del local.</p>
         </div>
-        <form class="formulario-acceso" action="#panel-usuario" method="get">
-          <label for="usuario">Correo o nombre de usuario</label>
-          <input id="usuario" name="usuario" type="text" placeholder="nombre@correo.com" required>
-          <label for="contrasena">Contraseña</label>
-          <input id="contrasena" name="contrasena" type="password" placeholder="Ingresá tu contraseña" required>
-          <button class="boton" type="submit">Iniciar sesión</button>
+          <form class="formulario-acceso card border-0 shadow-sm p-4" action="#panel-usuario" method="get">
+          <label class="form-label" for="usuario">Correo o nombre de usuario</label>
+          <input class="form-control" id="usuario" name="usuario" type="text" placeholder="nombre@correo.com" required>
+          <label class="form-label" for="contrasena">Contraseña</label>
+          <input class="form-control" id="contrasena" name="contrasena" type="password" placeholder="Ingresá tu contraseña" required>
+            <button class="btn btn-primary" type="submit">Iniciar sesión</button>
           <a class="enlace" href="#registro">¿Sos cliente nuevo? Registrate <span aria-hidden="true">→</span></a>
         </form>
       </div>
     </section>
 
-    <section class="seccion roles-seccion" id="panel-usuario">
-      <div class="contenedor">
+    <section class="seccion roles-seccion py-5" id="panel-usuario">
+      <div class="container">
         <div class="encabezado-seccion"><div><p class="etiqueta">Accesos por rol</p><h2>Cada equipo ve lo que necesita.</h2></div><p>Las cuentas internas son creadas por el administrador. Los clientes pueden registrarse desde el sistema.</p></div>
-        <div class="roles-grid">
-          <article class="rol rol-cliente"><span class="rol-numero">01 · Cliente</span><h3>Comprar y seguir</h3><p>Puede ver el menú, realizar pedidos, consultar pedidos anteriores, revisar su estado y administrar su dirección.</p></article>
-          <article class="rol"><span class="rol-numero">02 · Administrador</span><h3>Controlar el negocio</h3><p>Gestiona productos, categorías, stock, pedidos, ventas, empleados y estadísticas. Su cuenta no se registra libremente.</p></article>
-          <article class="rol"><span class="rol-numero">03 · Empleado</span><h3>Organizar pedidos</h3><p>Visualiza pedidos nuevos, los confirma, actualiza sus estados y consulta los productos para prepararlos.</p></article>
-          <article class="rol"><span class="rol-numero">04 · Repartidor</span><h3>Completar entregas</h3><p>Consulta los pedidos asignados y su dirección, cambia el estado a “En camino” y marca la entrega como realizada.</p></article>
+        <div class="roles-grid row row-cols-1 row-cols-md-2 row-cols-xl-4 g-3">
+          <article class="rol rol-cliente card h-100 p-4"><span class="rol-numero">01 · Cliente</span><h3>Comprar y seguir</h3><p>Puede ver el menú, realizar pedidos, consultar pedidos anteriores, revisar su estado y administrar su dirección.</p></article>
+          <article class="rol card h-100 p-4"><span class="rol-numero">02 · Administrador</span><h3>Controlar el negocio</h3><p>Gestiona productos, categorías, stock, pedidos, ventas, empleados y estadísticas. Su cuenta no se registra libremente.</p></article>
+          <article class="rol card h-100 p-4"><span class="rol-numero">03 · Empleado</span><h3>Organizar pedidos</h3><p>Visualiza pedidos nuevos, los confirma, actualiza sus estados y consulta los productos para prepararlos.</p></article>
+          <article class="rol card h-100 p-4"><span class="rol-numero">04 · Repartidor</span><h3>Completar entregas</h3><p>Consulta los pedidos asignados y su dirección, cambia el estado a “En camino” y marca la entrega como realizada.</p></article>
         </div>
       </div>
     </section>
@@ -85,25 +94,25 @@
     <section class="seccion" id="como-funciona">
       <div class="contenedor">
         <div class="encabezado-seccion"><div><p class="etiqueta">Organización diaria</p><h2>Una vista clara del negocio.</h2></div><p>Las herramientas principales para que el equipo pueda registrar, consultar y actualizar la información del local.</p></div>
-        <div class="modulos">
-          <article class="modulo modulo-destacado"><span class="icono">01</span><h3>Pedidos</h3><p>Registrá cada pedido con los datos del cliente, productos, cantidades, total y estado.</p><a class="enlace" href="#pedidos">Gestionar pedidos <span aria-hidden="true">→</span></a></article>
-          <article class="modulo"><span class="icono">02</span><h3>Productos y stock</h3><p>Consultá el menú disponible, actualizá precios y controlá el stock de cada producto.</p><a class="enlace" href="#productos">Ver productos <span aria-hidden="true">→</span></a></article>
-          <article class="modulo"><span class="icono">03</span><h3>Ventas</h3><p>Revisá las ventas realizadas y obtené información para tomar mejores decisiones.</p><a class="enlace" href="#ventas">Consultar ventas <span aria-hidden="true">→</span></a></article>
+        <div class="modulos row row-cols-1 row-cols-md-3 g-3">
+          <article class="modulo modulo-destacado card h-100 p-4"><span class="icono">01</span><h3>Pedidos</h3><p>Registrá cada pedido con los datos del cliente, productos, cantidades, total y estado.</p><a class="enlace" href="#pedidos">Gestionar pedidos <span aria-hidden="true">→</span></a></article>
+          <article class="modulo card h-100 p-4"><span class="icono">02</span><h3>Productos y stock</h3><p>Consultá el menú disponible, actualizá precios y controlá el stock de cada producto.</p><a class="enlace" href="#productos">Ver productos <span aria-hidden="true">→</span></a></article>
+          <article class="modulo card h-100 p-4"><span class="icono">03</span><h3>Ventas</h3><p>Revisá las ventas realizadas y obtené información para tomar mejores decisiones.</p><a class="enlace" href="#ventas">Consultar ventas <span aria-hidden="true">→</span></a></article>
         </div>
       </div>
     </section>
 
     <section class="seccion seccion-productos" id="productos">
-      <div class="contenedor">
-        <div class="encabezado-seccion"><div><p class="etiqueta">Menú del local</p><h2>Productos destacados</h2></div><button class="boton-secundario" type="button">+ Agregar producto</button></div>
-        <div class="tabla-contenedor"><table><thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Estado</th></tr></thead><tbody><tr><td><strong>Hamburguesa completa</strong></td><td>Hamburguesas</td><td>$ 5.500</td><td>18 unidades</td><td><span class="etiqueta-estado disponible">Disponible</span></td></tr><tr><td><strong>Pizza muzzarella</strong></td><td>Pizzas</td><td>$ 7.000</td><td>12 unidades</td><td><span class="etiqueta-estado disponible">Disponible</span></td></tr><tr><td><strong>Ensalada de estación</strong></td><td>Platos frescos</td><td>$ 4.800</td><td>03 unidades</td><td><span class="etiqueta-estado bajo">Stock bajo</span></td></tr></tbody></table></div>
+      <div class="container">
+        <div class="encabezado-seccion d-flex flex-wrap align-items-end justify-content-between gap-3"><div><p class="etiqueta">Menú del local</p><h2>Productos destacados</h2></div><button class="btn btn-outline-success" type="button">+ Agregar producto</button></div>
+        <div class="tabla-contenedor table-responsive shadow-sm"><table class="table table-hover align-middle mb-0"><thead class="table-light"><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Estado</th></tr></thead><tbody><tr><td><strong>Hamburguesa completa</strong></td><td>Hamburguesas</td><td>$ 5.500</td><td>18 unidades</td><td><span class="badge text-bg-success">Disponible</span></td></tr><tr><td><strong>Pizza muzzarella</strong></td><td>Pizzas</td><td>$ 7.000</td><td>12 unidades</td><td><span class="badge text-bg-success">Disponible</span></td></tr><tr><td><strong>Ensalada de estación</strong></td><td>Platos frescos</td><td>$ 4.800</td><td>03 unidades</td><td><span class="badge text-bg-warning">Stock bajo</span></td></tr></tbody></table></div>
       </div>
     </section>
 
     <section class="seccion pedidos-seccion" id="pedidos">
-      <div class="contenedor columnas">
+      <div class="container columnas row align-items-center g-5 mx-auto">
         <div><p class="etiqueta">Seguimiento</p><h2>Pedidos recientes</h2><p>Consultá el estado de cada pedido desde que ingresa hasta que se entrega.</p></div>
-        <div class="lista-pedidos"><article><div><strong>#00024 · Lucía Fernández</strong><p>2 hamburguesas completas · Envío a domicilio</p></div><span class="etiqueta-estado preparacion">En preparación</span></article><article><div><strong>#00023 · Martín González</strong><p>1 pizza muzzarella · Retira en el local</p></div><span class="etiqueta-estado entregado">Entregado</span></article><article><div><strong>#00022 · Sofía Ramírez</strong><p>1 ensalada de estación · Envío a domicilio</p></div><span class="etiqueta-estado pendiente">Pendiente</span></article></div>
+        <div class="lista-pedidos list-group shadow-sm"><article class="list-group-item d-flex justify-content-between align-items-center gap-3"><div><strong>#00024 · Lucía Fernández</strong><p>2 hamburguesas completas · Envío a domicilio</p></div><span class="badge text-bg-danger">En preparación</span></article><article class="list-group-item d-flex justify-content-between align-items-center gap-3"><div><strong>#00023 · Martín González</strong><p>1 pizza muzzarella · Retira en el local</p></div><span class="badge text-bg-success">Entregado</span></article><article class="list-group-item d-flex justify-content-between align-items-center gap-3"><div><strong>#00022 · Sofía Ramírez</strong><p>1 ensalada de estación · Envío a domicilio</p></div><span class="badge text-bg-warning">Pendiente</span></article></div>
       </div>
     </section>
 
@@ -116,6 +125,7 @@
     </section>
   </main>
 
-  <footer class="pie"><div class="contenedor pie-contenido"><div><a class="marca" href="#inicio">COMANDA<span>.</span></a><p>Sistema de gestión de pedidos y ventas.</p></div><div><p>Trabajo Práctico N.º 1 · Programación IV C</p><p>Lazarte Gastón · Lazarte Karina · Gómez Gonzalo</p></div></div></footer>
+  <footer class="pie py-5"><div class="container pie-contenido d-flex flex-wrap justify-content-between gap-4"><div><a class="marca" href="#inicio">COMANDA<span>.</span></a><p>Sistema de gestión de pedidos y ventas.</p></div><div><p>Trabajo Práctico N.º 3 · Programación IV C</p><p>Lazarte Gastón · Lazarte Karina · Gómez Gonzalo</p></div></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
