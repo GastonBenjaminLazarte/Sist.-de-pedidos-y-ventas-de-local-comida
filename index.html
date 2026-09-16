@@ -13,6 +13,7 @@
       <a class="marca" href="#inicio">COMANDA<span>.</span></a>
       <nav aria-label="Navegación principal">
         <a href="#inicio">Inicio</a>
+        <a href="#acceso">Acceso</a>
         <a href="#productos">Productos</a>
         <a href="#pedidos">Pedidos</a>
         <a href="#ventas">Ventas</a>
@@ -45,6 +46,40 @@
           <p class="nota">La información se actualiza con cada pedido registrado.</p>
         </aside>
       </div>
+    </section>
+
+    <section class="seccion acceso-seccion" id="acceso">
+      <div class="contenedor acceso-contenido">
+        <div>
+          <p class="etiqueta">Ingreso al sistema</p>
+          <h2>Una entrada para cada usuario.</h2>
+          <p>El acceso determina las opciones disponibles según el tipo de cuenta y mantiene organizada la información del local.</p>
+        </div>
+        <form class="formulario-acceso" action="#panel-usuario" method="get">
+          <label for="usuario">Correo o nombre de usuario</label>
+          <input id="usuario" name="usuario" type="text" placeholder="nombre@correo.com" required>
+          <label for="contrasena">Contraseña</label>
+          <input id="contrasena" name="contrasena" type="password" placeholder="Ingresá tu contraseña" required>
+          <button class="boton" type="submit">Iniciar sesión</button>
+          <a class="enlace" href="#registro">¿Sos cliente nuevo? Registrate <span aria-hidden="true">→</span></a>
+        </form>
+      </div>
+    </section>
+
+    <section class="seccion roles-seccion" id="panel-usuario">
+      <div class="contenedor">
+        <div class="encabezado-seccion"><div><p class="etiqueta">Accesos por rol</p><h2>Cada equipo ve lo que necesita.</h2></div><p>Las cuentas internas son creadas por el administrador. Los clientes pueden registrarse desde el sistema.</p></div>
+        <div class="roles-grid">
+          <article class="rol rol-cliente"><span class="rol-numero">01 · Cliente</span><h3>Comprar y seguir</h3><p>Puede ver el menú, realizar pedidos, consultar pedidos anteriores, revisar su estado y administrar su dirección.</p></article>
+          <article class="rol"><span class="rol-numero">02 · Administrador</span><h3>Controlar el negocio</h3><p>Gestiona productos, categorías, stock, pedidos, ventas, empleados y estadísticas. Su cuenta no se registra libremente.</p></article>
+          <article class="rol"><span class="rol-numero">03 · Empleado</span><h3>Organizar pedidos</h3><p>Visualiza pedidos nuevos, los confirma, actualiza sus estados y consulta los productos para prepararlos.</p></article>
+          <article class="rol"><span class="rol-numero">04 · Repartidor</span><h3>Completar entregas</h3><p>Consulta los pedidos asignados y su dirección, cambia el estado a “En camino” y marca la entrega como realizada.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion registro-seccion" id="registro">
+      <div class="contenedor registro-contenido"><div><p class="etiqueta">Registro de clientes</p><h2>Crear una cuenta para pedir.</h2><p>El cliente podrá registrarse con nombre, correo, contraseña, teléfono y dirección de entrega.</p></div><div class="datos-registro"><span>Nombre y apellido</span><span>Correo electrónico</span><span>Teléfono y dirección</span><a class="enlace" href="#acceso">Ir al acceso <span aria-hidden="true">→</span></a></div></div>
     </section>
 
     <section class="seccion" id="como-funciona">
