@@ -25,7 +25,12 @@
             <li class="nav-item"><a class="nav-link" href="#pedidos">Pedidos</a></li>
             <li class="nav-item"><a class="nav-link" href="#ventas">Ventas</a></li>
           </ul>
-          <a class="btn btn-primary" href="#nuevo-pedido">Nuevo pedido</a>
+          <div class="d-flex align-items-center gap-3">
+            <button class="btn btn-primary position-relative" type="button" id="cart-toggle" aria-label="Abrir carrito">
+              Nuevo pedido
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark" id="cart-count">0</span>
+            </button>
+          </div>
         </div>
       </div>
     </nav>
@@ -64,12 +69,13 @@
             <h2 class="h4">Una entrada para cada usuario.</h2>
           <p>El acceso determina las opciones disponibles según el tipo de cuenta y mantiene organizada la información del local.</p>
         </div>
-          <form class="formulario-acceso card border-0 shadow-sm p-4" action="#panel-usuario" method="get">
+          <form class="formulario-acceso card border-0 shadow-sm p-4" id="loginForm" action="#panel-usuario" method="post" novalidate>
           <label class="form-label" for="usuario">Correo o nombre de usuario</label>
           <input class="form-control" id="usuario" name="usuario" type="text" placeholder="nombre@correo.com" required>
           <label class="form-label" for="contrasena">Contraseña</label>
           <input class="form-control" id="contrasena" name="contrasena" type="password" placeholder="Ingresá tu contraseña" required>
             <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+            <div id="loginStatus" class="form-status" aria-live="polite"></div>
           <a class="enlace" href="#registro">¿Sos cliente nuevo? Registrate <span aria-hidden="true">→</span></a>
         </form>
       </div>
@@ -105,7 +111,45 @@
     <section class="seccion seccion-productos" id="productos">
       <div class="container">
         <div class="encabezado-seccion d-flex flex-wrap align-items-end justify-content-between gap-3"><div><p class="etiqueta">Menú del local</p><h2>Productos destacados</h2></div><button class="btn btn-outline-success" type="button">+ Agregar producto</button></div>
-        <div class="tabla-contenedor table-responsive shadow-sm"><table class="table table-hover align-middle mb-0"><thead class="table-light"><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Estado</th></tr></thead><tbody><tr><td><strong>Hamburguesa completa</strong></td><td>Hamburguesas</td><td>$ 5.500</td><td>18 unidades</td><td><span class="badge text-bg-success">Disponible</span></td></tr><tr><td><strong>Pizza muzzarella</strong></td><td>Pizzas</td><td>$ 7.000</td><td>12 unidades</td><td><span class="badge text-bg-success">Disponible</span></td></tr><tr><td><strong>Ensalada de estación</strong></td><td>Platos frescos</td><td>$ 4.800</td><td>03 unidades</td><td><span class="badge text-bg-warning">Stock bajo</span></td></tr></tbody></table></div>
+        <div class="mb-4 d-flex flex-wrap gap-2" aria-label="Filtrar productos por categoría">
+          <button class="btn btn-sm product-filter active" data-filter="all" type="button">Todos</button>
+          <button class="btn btn-sm btn-outline-secondary product-filter" data-filter="hamburguesas" type="button">Hamburguesas</button>
+          <button class="btn btn-sm btn-outline-secondary product-filter" data-filter="pizzas" type="button">Pizzas</button>
+          <button class="btn btn-sm btn-outline-secondary product-filter" data-filter="frescos" type="button">Frescos</button>
+          <button class="btn btn-sm btn-outline-secondary product-filter" data-filter="bebidas" type="button">Bebidas</button>
+        </div>
+        <div class="tabla-contenedor table-responsive shadow-sm"><table class="table table-hover align-middle mb-0"><thead class="table-light"><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Estado</th><th>Acción</th></tr></thead><tbody>
+          <tr data-category="hamburguesas" data-name="Hamburguesa completa" data-price="5500">
+            <td><strong>Hamburguesa completa</strong></td><td>Hamburguesas</td><td>$ 5.500</td><td>18 unidades</td><td><span class="badge text-bg-success">Disponible</span></td><td><button class="btn btn-sm btn-primary btn-add-product" type="button">Agregar</button></td>
+          </tr>
+          <tr data-category="pizzas" data-name="Pizza muzzarella" data-price="7000">
+            <td><strong>Pizza muzzarella</strong></td><td>Pizzas</td><td>$ 7.000</td><td>12 unidades</td><td><span class="badge text-bg-success">Disponible</span></td><td><button class="btn btn-sm btn-primary btn-add-product" type="button">Agregar</button></td>
+          </tr>
+          <tr data-category="frescos" data-name="Ensalada de estación" data-price="4800">
+            <td><strong>Ensalada de estación</strong></td><td>Platos frescos</td><td>$ 4.800</td><td>03 unidades</td><td><span class="badge text-bg-warning">Stock bajo</span></td><td><button class="btn btn-sm btn-primary btn-add-product" type="button">Agregar</button></td>
+          </tr>
+          <tr data-category="bebidas" data-name="Limonada casera" data-price="1800">
+            <td><strong>Limonada casera</strong></td><td>Bebidas</td><td>$ 1.800</td><td>20 unidades</td><td><span class="badge text-bg-success">Disponible</span></td><td><button class="btn btn-sm btn-primary btn-add-product" type="button">Agregar</button></td>
+          </tr>
+        </tbody></table></div>
+      </div>
+    </section>
+
+    <section class="seccion carrito-seccion py-4">
+      <div class="container">
+        <div class="card border-0 shadow-sm p-4">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <h3 class="h5 mb-0">Pedido actual</h3>
+            <span class="badge text-bg-dark" id="cart-summary">0 items</span>
+          </div>
+          <ul class="list-group list-group-flush mt-3" id="cart-items" aria-live="polite">
+            <li class="list-group-item px-0 text-muted">Todavía no agregaste productos.</li>
+          </ul>
+          <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+            <strong>Total estimado</strong>
+            <strong id="cart-total">$ 0</strong>
+          </div>
+        </div>
       </div>
     </section>
 
