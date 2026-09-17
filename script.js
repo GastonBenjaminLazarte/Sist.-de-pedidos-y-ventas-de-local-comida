@@ -105,8 +105,9 @@ function getCartSubtotal() {
   return state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 }
 
-function getCartShipping() {
-  return state.cart.length ? 1200 : 0;
+function getCartShipping(deliveryType = document.getElementById('deliveryType')?.value || 'domicilio') {
+  if (!state.cart.length) return 0;
+  return deliveryType === 'domicilio' ? 1200 : 0;
 }
 
 function renderProducts() {
@@ -169,9 +170,10 @@ function renderCart() {
   const cartShipping = document.getElementById('cartShipping');
   const cartTotal = document.getElementById('cartTotal');
 
+  const selectedDelivery = document.getElementById('deliveryType')?.value || 'domicilio';
   const totalItems = state.cart.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = getCartSubtotal();
-  const shipping = getCartShipping();
+  const shipping = getCartShipping(selectedDelivery);
   const total = subtotal + shipping;
 
   cartBadge.textContent = `${totalItems} items`;
@@ -285,6 +287,7 @@ function checkoutOrder(event) {
   }
 
   const orderNumber = generateOrderNumber();
+  const shipping = getCartShipping(deliveryType);
   const order = {
     number: orderNumber,
     client: clientName || 'Cliente local',
@@ -297,7 +300,7 @@ function checkoutOrder(event) {
     status: 'NUEVO',
     note: orderNote,
     items: state.cart.map((item) => ({ ...item })),
-    total: getCartSubtotal() + getCartShipping()
+    total: getCartSubtotal() + shipping
   };
 
   state.orders.unshift(order);
@@ -615,6 +618,7 @@ function bindButtons() {
   });
 
   document.getElementById('checkoutForm').addEventListener('submit', checkoutOrder);
+  document.getElementById('deliveryType').addEventListener('change', renderCart);
   document.getElementById('btnCheckStatus').addEventListener('click', () => renderOrderStatus(document.getElementById('statusInput').value.replace(/[^0-9]/g, '')));
   document.getElementById('btnEmployeeLogin').addEventListener('click', () => {
     const user = document.getElementById('employeeUser').value.trim();
