@@ -1,4 +1,4 @@
-# Comanda - Sistema de Gestión de Pedidos y Ventas
+# Comanda - TP3: Refactorización con Bootstrap
 
 ## Integrantes
 
@@ -8,75 +8,64 @@
 
 ## Descripción
 
-Comanda es una interfaz web para un sistema de gestión de pedidos y ventas de un local de comida. La propuesta centraliza el acceso de clientes, administradores, empleados y repartidores, además de organizar productos, stock, pedidos, entregas y ventas.
+Comanda es una interfaz web para gestionar pedidos y ventas de un local de comida. En este Trabajo Práctico N.º 3 se refactorizó la interfaz del TP2 utilizando Bootstrap, sin agregar funcionalidades nuevas.
 
-Esta entrega corresponde al Trabajo Práctico N.º 2: transforma la maqueta HTML inicial en una interfaz visual completa, adaptable a distintos tamaños de pantalla.
+La interfaz incluye navegación responsive, acceso de usuarios, roles, productos, stock, pedidos, ventas y pie de página.
+
+## Tecnologías
+
+- HTML5 semántico.
+- Bootstrap 5.3.3 mediante CDN.
+- CSS3.
+- Git y GitHub.
+- Netlify para deploy.
 
 ## Estructura
 
 ```text
 mi-proyecto/
 ├── img/
-├── style.css
 ├── index.html
+├── style.css
+├── bootstrap-overrides.css
 └── README.md
 ```
 
-## Tecnologías utilizadas
+## Refactorización con Bootstrap
 
-- HTML5 semántico.
-- CSS3.
-- Flexbox.
-- CSS Grid.
-- Variables CSS.
-- Media Queries para Responsive Design.
-- Git y GitHub.
+- `navbar`, `navbar-expand-lg`, `collapse` y `navbar-toggler`: navegación responsive.
+- `container`, `row`, `col`, `row-cols-*` y `g-*`: distribución adaptable.
+- `card` y `shadow`: resumen, acceso y roles.
+- `form-control` y `btn`: formulario de inicio de sesión.
+- `table-responsive`, `table-hover` y `table-light`: tabla de productos.
+- `list-group`: listado de pedidos.
+- `badge`: estados de productos y pedidos.
+- `py-*`, `p-*`, `gap-*`, `d-flex` y `flex-wrap`: espaciado y Flexbox.
 
-## Aplicación de Flexbox
+## CSS anterior
 
-Se utilizó Flexbox en la barra de navegación, en los botones y acciones del encabezado, en los encabezados de sección, en las filas de pedidos y en el pie de página. Estas estructuras necesitan distribuir elementos en una misma dirección y alinearlos de manera flexible.
+El CSS puro realizado en el TP2 se conserva completo y comentado dentro de `style.css`; no fue eliminado. La hoja activa `bootstrap-overrides.css` contiene solamente ajustes visuales complementarios para la paleta de Comanda y convive con Bootstrap.
 
-## Aplicación de Grid
+## Diseño responsive
 
-Se utilizó CSS Grid en la sección principal, el resumen de actividad, los módulos de gestión, las tarjetas de roles, el formulario de acceso, las métricas, la tabla de productos y el gráfico de ventas. Grid permite organizar columnas y filas con unidades `fr` y adaptar la composición.
+Bootstrap adapta la navegación, las columnas y las cards mediante breakpoints. En pantallas pequeñas, el menú se contrae, los módulos pasan a una columna y la tabla permite desplazamiento horizontal. También se conserva una Media Query en `bootstrap-overrides.css` para ajustar el alto del hero, las sombras y el espaciado móvil.
 
-## Variables CSS
+## Ramas y flujo de trabajo
 
-Las variables están declaradas en `:root` y se reutilizan con `var()`:
+- `main`: versión estable.
+- `dev`: rama de integración del equipo.
+- `refactor/navbar`: rama de refactorización de la navegación.
+- `refactor/home`: rama prevista para la sección principal.
+- `refactor/footer`: rama prevista para el pie de página.
 
-- `--tinta`: color principal del texto.
-- `--verde`: color institucional y paneles destacados.
-- `--menta`: fondo de secciones informativas.
-- `--coral`: botones, enlaces y etiquetas.
-- `--amarillo`: acentos y llamadas de atención.
-- `--crema`: fondos suaves.
-- `--gris`: textos secundarios.
-- `--linea`: bordes y separadores.
-- `--blanco`: fondos y textos claros.
+El trabajo se realiza en ramas `refactor/*`, luego se integran los cambios en `dev` mediante Pull Request. Finalmente, `dev` se integra en `main`.
 
-## Responsive Design
+## Deploy
 
-El diseño utiliza una Media Query en `style.css` para pantallas de hasta `760px`. En celulares, las columnas pasan a una sola columna, el menú se reorganiza, las tarjetas se apilan, el formulario cambia a una columna y el contenido conserva márgenes, espaciados y legibilidad. La página utiliza además porcentajes, `rem`, `vw`, `vh`, `px` y unidades `fr` para mantener proporciones flexibles.
+El proyecto está preparado para publicarse en Netlify como sitio estático. En Netlify se debe seleccionar el repositorio de GitHub, usar `dev` o `main` como rama de producción y dejar vacío el comando de build. La URL pública se agrega aquí después de crear el sitio:
 
-## Box Model y accesibilidad
+https://comanda-sist-pedidos-y-ventas-comida.netlify.app
 
-Se aplica `box-sizing: border-box` globalmente, junto con `margin`, `padding`, `border` y sombras para construir los componentes. El HTML utiliza `header`, `nav`, `main`, `section`, `article`, `aside`, `form`, `table` y `footer`, además de etiquetas asociadas a sus campos.
+## Ejecutar localmente
 
-## Ramas y commits
-
-- `main`: versión estable e integración final.
-- `dev`: rama principal de desarrollo.
-- `feature/maquetado-html`: rama de trabajo inicial.
-
-Los cambios del TP2 se desarrollan sobre `dev` con commits descriptivos y luego se integran a `main` mediante Pull Request en GitHub. El PR debe ser revisado y asignado a los compañeros del grupo.
-
-## Flujo de trabajo del equipo
-
-1. Crear una rama de trabajo a partir de `dev`.
-2. Realizar cambios y commits descriptivos.
-3. Publicar la rama y abrir un Pull Request hacia `dev` o `main`, según lo acordado por el equipo.
-4. Revisar el código y asignar a los integrantes como colaboradores o revisores.
-
-## Ejecutar
-
-Abrir `index.html` en un navegador. Esta entrega es una interfaz estática y no requiere dependencias ni servidor.
+Abrir `index.html` en un navegador. Se necesita conexión a Internet para cargar Bootstrap desde el CDN.
