@@ -1,4 +1,4 @@
-# Comanda - TP3: Refactorización con Bootstrap
+# COMANDA - Sistema de gestión de pedidos y ventas
 
 ## Integrantes
 
@@ -8,64 +8,87 @@
 
 ## Descripción
 
-Comanda es una interfaz web para gestionar pedidos y ventas de un local de comida. En este Trabajo Práctico N.º 3 se refactorizó la interfaz del TP2 utilizando Bootstrap, sin agregar funcionalidades nuevas.
+Comanda es un sistema web para centralizar pedidos y ventas de un local de comida, evitando depender de WhatsApp, llamadas, redes sociales y anotaciones manuales.
 
-La interfaz incluye navegación responsive, acceso de usuarios, roles, productos, stock, pedidos, ventas y pie de página.
+El proyecto permite gestionar:
+- clientes que realizan pedidos sin iniciar sesión
+- empleados que gestionan pedidos y estados
+- repartidores que actualizan entregas
+- administrador que controla productos, stock y ventas
 
-## Tecnologías
+## Funcionalidades principales
 
-- HTML5 semántico.
-- Bootstrap 5.3.3 mediante CDN.
-- CSS3.
-- Git y GitHub.
-- Netlify para deploy.
+### Cliente
+- visualización del menú con productos, precios, categorías y stock
+- carrito con agregar, quitar, sumar y restar cantidades
+- observaciones del pedido
+- elección de retiro o domicilio
+- datos del cliente para envío
+- método de pago
+- confirmación del pedido con número generado
+- consulta de estado del pedido
 
-## Estructura
+### Empleado
+- acceso con usuario y contraseña
+- visualización de pedidos
+- actualización de estados
+- cancelación de pedidos
+
+### Repartidor
+- acceso con usuario y contraseña
+- visualización de entregas de domicilio
+- cambio de estado a En camino o Entregado
+
+### Administrador
+- dashboard con métricas resumidas
+- gestión de productos
+- edición, activación e inactivación
+- control de stock
+- vista de pedidos y ventas
+
+## Tecnologías utilizadas
+
+- HTML5
+- CSS3
+- Bootstrap 5.3.3
+- JavaScript
+- localStorage para persistencia de datos en el navegador
+
+## Estructura del proyecto
 
 ```text
-mi-proyecto/
-├── img/
+Sist. de pedidos y ventas local de comida/
 ├── index.html
-├── style.css
+├── script.js
 ├── bootstrap-overrides.css
-└── README.md
+├── style.css
+├── img/
+├── README.md
+└── .gitignore
 ```
 
-## Refactorización con Bootstrap
+## Usuarios de prueba
 
-- `navbar`, `navbar-expand-lg`, `collapse` y `navbar-toggler`: navegación responsive.
-- `container`, `row`, `col`, `row-cols-*` y `g-*`: distribución adaptable.
-- `card` y `shadow`: resumen, acceso y roles.
-- `form-control` y `btn`: formulario de inicio de sesión.
-- `table-responsive`, `table-hover` y `table-light`: tabla de productos.
-- `list-group`: listado de pedidos.
-- `badge`: estados de productos y pedidos.
-- `py-*`, `p-*`, `gap-*`, `d-flex` y `flex-wrap`: espaciado y Flexbox.
+- Empleado: empleado / 1234
+- Repartidor: repartidor / 1234
+- Administrador: admin / 1234
 
-## CSS anterior
+## Cómo probar el proyecto
 
-El CSS puro realizado en el TP2 se conserva completo y comentado dentro de `style.css`; no fue eliminado. La hoja activa `bootstrap-overrides.css` contiene solamente ajustes visuales complementarios para la paleta de Comanda y convive con Bootstrap.
+1. Abrir `index.html` en el navegador.
+2. Agregar productos al carrito.
+3. Confirmar un pedido como cliente.
+4. Consultar el estado por número de pedido.
+5. Ingresar con las credenciales de prueba para cada rol.
 
-## Diseño responsive
+## Estado del proyecto
 
-Bootstrap adapta la navegación, las columnas y las cards mediante breakpoints. En pantallas pequeñas, el menú se contrae, los módulos pasan a una columna y la tabla permite desplazamiento horizontal. También se conserva una Media Query en `bootstrap-overrides.css` para ajustar el alto del hero, las sombras y el espaciado móvil.
-
-## Ramas y flujo de trabajo
-
-- `main`: versión estable.
-- `dev`: rama de integración del equipo.
-- `refactor/navbar`: rama de refactorización de la navegación.
-- `refactor/home`: rama prevista para la sección principal.
-- `refactor/footer`: rama prevista para el pie de página.
-
-El trabajo se realiza en ramas `refactor/*`, luego se integran los cambios en `dev` mediante Pull Request. Finalmente, `dev` se integra en `main`.
+El sistema está desarrollado como una versión funcional de frontend para TP, con lógica de negocio simulada y persistencia local para mantener datos entre recargas.
 
 ## Deploy
 
-El proyecto está preparado para publicarse en Netlify como sitio estático. En Netlify se debe seleccionar el repositorio de GitHub, usar `dev` o `main` como rama de producción y dejar vacío el comando de build.
+El proyecto quedó preparado para publicarse como sitio estático en Netlify o similar.
 
-`URL_DE_NETLIFY_PENDIENTE`
+## Ramas y repositorio
 
-## Ejecutar localmente
-
-Abrir `index.html` en un navegador. Se necesita conexión a Internet para cargar Bootstrap desde el CDN.
+El trabajo se desarrolló con Git y se subió a GitHub siguiendo una estructura de ramas para el proyecto.
