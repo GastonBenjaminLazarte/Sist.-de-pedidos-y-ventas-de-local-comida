@@ -153,6 +153,12 @@ function addToCart(productId) {
   if (!product || product.available === false) return;
 
   const existing = state.cart.find((item) => item.id === productId);
+  const currentQuantity = existing?.quantity || 0;
+  if (currentQuantity >= product.stock) {
+    document.getElementById('checkoutMessage').textContent = `No hay más stock disponible de ${product.name}.`;
+    return;
+  }
+
   if (existing) {
     existing.quantity += 1;
   } else {
@@ -183,6 +189,16 @@ function renderCart() {
 
   if (!state.cart.length) {
     cartItems.innerHTML = '<div class="text-muted small">Todavía no agregaste productos.</div>';
+    return;
+  }
+
+  const stockIsAvailable = state.cart.every((item) => {
+    const product = state.products.find((entry) => entry.id === item.id);
+    return product && item.quantity <= product.stock;
+  });
+
+  if (!stockIsAvailable) {
+    document.getElementById('checkoutMessage').textContent = 'Revisá las cantidades del carrito: no hay stock suficiente.';
     return;
   }
 
@@ -304,6 +320,13 @@ function checkoutOrder(event) {
   };
 
   state.orders.unshift(order);
+  state.cart.forEach((item) => {
+    const product = state.products.find((entry) => entry.id === item.id);
+    if (product) {
+      product.stock -= item.quantity;
+      if (product.stock === 0) product.available = false;
+    }
+  });
   state.cart = [];
   saveState();
   renderCart();
@@ -580,8 +603,9 @@ function renderAdminPanel() {
       product.name = nameInput.value.trim() || product.name;
       product.category = categoryInput.value || product.category;
       product.price = Number(priceInput.value) || product.price;
-      product.stock = Number(stockInput.value) || product.stock;
+      product.stock = Math.max(0, Number(stockInput.value));
       product.available = availableInput.checked;
+      if (product.stock === 0) product.available = false;
 
       saveState();
       renderProducts();

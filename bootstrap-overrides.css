@@ -128,6 +128,44 @@ img { max-width: 100%; display: block; }
   background: #fff;
 }
 
+.section-team {
+  background: var(--comanda-cream);
+}
+
+.team-card {
+  padding: 1.5rem;
+  border: 1px solid var(--comanda-line);
+  border-radius: 1rem;
+  background: #fff;
+}
+
+.team-number {
+  color: var(--comanda-coral);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.technology-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--comanda-line);
+  border-radius: 0.75rem;
+  background: #fff;
+}
+
+.technology-strip span {
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: var(--comanda-mint);
+  color: var(--comanda-green);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
 .product-card {
   border: 1px solid var(--comanda-line);
   border-radius: 1rem;

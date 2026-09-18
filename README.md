@@ -6,6 +6,8 @@
 - Lazarte Karina
 - Gómez Gonzalo
 
+La sección **Equipo y tecnologías** dentro del sitio también identifica a los tres integrantes y sus responsabilidades. El contador **Contributors** de GitHub se basa en los autores de los commits y puede mostrar menos personas que las declaradas en el equipo si todos los cambios fueron subidos desde una sola cuenta.
+
 ## Descripción
 
 Comanda es un sistema web para centralizar pedidos y ventas de un local de comida, evitando depender de WhatsApp, llamadas, redes sociales y anotaciones manuales.
@@ -53,6 +55,17 @@ El proyecto permite gestionar:
 - Bootstrap 5.3.3
 - JavaScript
 - localStorage para persistencia de datos en el navegador
+
+### Aplicación de Bootstrap
+
+Bootstrap 5.3.3 se incorpora desde CDN en `index.html` y se utiliza en:
+
+- grilla responsive con `container`, `row` y `col-*`
+- navegación responsive con `navbar`, `navbar-toggler` y `collapse`
+- botones, formularios, tarjetas, badges, alertas y tablas
+- utilidades de espaciado, flexbox, colores y visibilidad como `d-flex`, `gap-*`, `p-*` y `d-none`
+
+Los estilos propios de la identidad visual y los ajustes de componentes están en `bootstrap-overrides.css`.
 
 ## Estructura del proyecto
 
