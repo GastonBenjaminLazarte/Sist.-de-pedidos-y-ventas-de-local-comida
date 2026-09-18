@@ -67,6 +67,44 @@ Bootstrap 5.3.3 se incorpora desde CDN en `index.html` y se utiliza en:
 
 Los estilos propios de la identidad visual y los ajustes de componentes están en `bootstrap-overrides.css`.
 
+## Estrategia SEO
+
+La estrategia SEO de COMANDA busca posicionar el proyecto para personas que necesitan digitalizar los pedidos y las ventas de un local de comida.
+
+### Objetivo y público
+
+- atraer dueños y encargados de locales de comida
+- comunicar que el sistema centraliza menú, carrito, pedidos, entregas, stock y ventas
+- facilitar que el usuario entienda el producto desde la primera visita
+
+### Palabras clave principales
+
+- sistema de pedidos para local de comida
+- sistema de ventas gastronómico
+- menú online para restaurante
+- gestión de pedidos y delivery
+- control de stock para local de comida
+
+### SEO técnico aplicado
+
+- `lang="es"` para identificar el idioma principal
+- título descriptivo y meta descripción orientada al contenido real del sitio
+- metadatos Open Graph y Twitter Card para compartir el proyecto en redes sociales
+- meta `robots` para permitir la indexación de la página pública
+- estructura semántica con `header`, `nav`, `main`, `section` y `footer`
+- encabezados jerárquicos (`h1`, `h2` y `h3`) y enlaces internos por sección
+- diseño responsive mediante Bootstrap y estilos propios
+- textos alternativos en las imágenes de productos
+- contenido visible que explica el sistema, sus roles y sus funcionalidades
+
+### SEO de contenidos y accesibilidad
+
+La página utiliza términos relacionados con pedidos, ventas, clientes, repartidores, productos y stock de forma natural. Se priorizan textos claros, formularios con etiquetas, navegación por secciones y contraste visual para facilitar el uso en distintos dispositivos.
+
+### Medición y mejora futura
+
+En una publicación real se recomienda conectar Google Search Console y una herramienta de analítica, revisar las consultas de búsqueda, optimizar las páginas con peor rendimiento y agregar contenido útil sobre gestión gastronómica y pedidos online.
+
 ## Estructura del proyecto
 
 ```text
