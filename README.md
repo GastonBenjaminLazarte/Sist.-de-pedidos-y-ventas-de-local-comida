@@ -1,4 +1,4 @@
-# Comanda - Sistema de Gestión de Pedidos y Ventas
+# COMANDA - Sistema de gestión de pedidos y ventas
 
 ## Integrantes
 
@@ -6,70 +6,102 @@
 - Lazarte Karina
 - Gómez Gonzalo
 
+La sección **Equipo y tecnologías** dentro del sitio también identifica a los tres integrantes y sus responsabilidades. El contador **Contributors** de GitHub se basa en los autores de los commits y puede mostrar menos personas que las declaradas en el equipo si todos los cambios fueron subidos desde una sola cuenta.
+
 ## Descripción
 
-Comanda es una interfaz web para un sistema de gestión de pedidos y ventas de un local de comida. La propuesta centraliza el acceso de clientes, administradores, empleados y repartidores, además de organizar productos, stock, pedidos, entregas y ventas.
+Comanda es un sistema web para centralizar pedidos y ventas de un local de comida, evitando depender de WhatsApp, llamadas, redes sociales y anotaciones manuales.
 
-Esta entrega corresponde al Trabajo Práctico N.º 2: transforma la maqueta HTML inicial en una interfaz visual completa, adaptable a distintos tamaños de pantalla.
+El proyecto permite gestionar:
+- clientes que realizan pedidos sin iniciar sesión
+- empleados que gestionan pedidos y estados
+- repartidores que actualizan entregas
+- administrador que controla productos, stock y ventas
 
-## Estructura
+## Funcionalidades principales
 
-```text
-mi-proyecto/
-├── img/
-├── style.css
-├── index.html
-└── README.md
-```
+### Cliente
+- visualización del menú con productos, precios, categorías y stock
+- carrito con agregar, quitar, sumar y restar cantidades
+- observaciones del pedido
+- elección de retiro o domicilio
+- datos del cliente para envío
+- método de pago
+- confirmación del pedido con número generado
+- consulta de estado del pedido
+
+### Empleado
+- acceso con usuario y contraseña
+- visualización de pedidos
+- actualización de estados
+- cancelación de pedidos
+
+### Repartidor
+- acceso con usuario y contraseña
+- visualización de entregas de domicilio
+- cambio de estado a En camino o Entregado
+
+### Administrador
+- dashboard con métricas resumidas
+- gestión de productos
+- edición, activación e inactivación
+- control de stock
+- vista de pedidos y ventas
 
 ## Tecnologías utilizadas
 
-- HTML5 semántico.
-- CSS3.
-- Flexbox.
-- CSS Grid.
-- Variables CSS.
-- Media Queries para Responsive Design.
-- Git y GitHub.
+- HTML5
+- CSS3
+- Bootstrap 5.3.3
+- JavaScript
+- localStorage para persistencia de datos en el navegador
 
-## Aplicación de Flexbox
+### Aplicación de Bootstrap
 
-Se utilizó Flexbox en la barra de navegación, en los botones y acciones del encabezado, en los encabezados de sección, en las filas de pedidos y en el pie de página. Estas estructuras necesitan distribuir elementos en una misma dirección y alinearlos de manera flexible.
+Bootstrap 5.3.3 se incorpora desde CDN en `index.html` y se utiliza en:
 
-## Aplicación de Grid
+- grilla responsive con `container`, `row` y `col-*`
+- navegación responsive con `navbar`, `navbar-toggler` y `collapse`
+- botones, formularios, tarjetas, badges, alertas y tablas
+- utilidades de espaciado, flexbox, colores y visibilidad como `d-flex`, `gap-*`, `p-*` y `d-none`
 
-Se utilizó CSS Grid en la sección principal, el resumen de actividad, los módulos de gestión, las tarjetas de roles, el formulario de acceso, las métricas, la tabla de productos y el gráfico de ventas. Grid permite organizar columnas y filas con unidades `fr` y adaptar la composición.
+Los estilos propios de la identidad visual y los ajustes de componentes están en `bootstrap-overrides.css`.
 
-## Variables CSS
+## Estructura del proyecto
 
-Las variables están declaradas en `:root` y se reutilizan con `var()`:
+```text
+Sist. de pedidos y ventas local de comida/
+├── index.html
+├── script.js
+├── bootstrap-overrides.css
+├── style.css
+├── img/
+├── README.md
+└── .gitignore
+```
 
-- `--tinta`: color principal del texto.
-- `--verde`: color institucional y paneles destacados.
-- `--menta`: fondo de secciones informativas.
-- `--coral`: botones, enlaces y etiquetas.
-- `--amarillo`: acentos y llamadas de atención.
-- `--crema`: fondos suaves.
-- `--gris`: textos secundarios.
-- `--linea`: bordes y separadores.
-- `--blanco`: fondos y textos claros.
+## Usuarios de prueba
 
-## Responsive Design
+- Empleado: empleado / 1234
+- Repartidor: repartidor / 1234
+- Administrador: admin / 1234
 
-El diseño utiliza una Media Query en `style.css` para pantallas de hasta `760px`. En celulares, las columnas pasan a una sola columna, el menú se reorganiza, las tarjetas se apilan, el formulario cambia a una columna y el contenido conserva márgenes, espaciados y legibilidad. La página utiliza además porcentajes, `rem`, `vw`, `vh`, `px` y unidades `fr` para mantener proporciones flexibles.
+## Cómo probar el proyecto
 
-## Box Model y accesibilidad
+1. Abrir `index.html` en el navegador.
+2. Agregar productos al carrito.
+3. Confirmar un pedido como cliente.
+4. Consultar el estado por número de pedido.
+5. Ingresar con las credenciales de prueba para cada rol.
 
-Se aplica `box-sizing: border-box` globalmente, junto con `margin`, `padding`, `border` y sombras para construir los componentes. El HTML utiliza `header`, `nav`, `main`, `section`, `article`, `aside`, `form`, `table` y `footer`, además de etiquetas asociadas a sus campos.
+## Estado del proyecto
 
-## Ramas y commits
+El sistema está desarrollado como una versión funcional de frontend para TP, con lógica de negocio simulada y persistencia local para mantener datos entre recargas.
 
-- `main`: versión estable e integración final.
-- `dev`: rama principal de desarrollo.
-- `feature/maquetado-html`: rama de trabajo inicial.
+## Deploy
 
-Los cambios del TP2 se desarrollan sobre `dev` con commits descriptivos y luego se integran a `main` mediante Pull Request en GitHub. El PR debe ser revisado y asignado a los compañeros del grupo.
+El proyecto quedó preparado para publicarse como sitio estático en Netlify o similar.
 
-## Ejecutar
+## Ramas y repositorio
 
-Abrir `index.html` en un navegador. Esta entrega es una interfaz estática y no requiere dependencias ni servidor.
+El trabajo se desarrolló con Git y se subió a GitHub siguiendo una estructura de ramas para el proyecto.

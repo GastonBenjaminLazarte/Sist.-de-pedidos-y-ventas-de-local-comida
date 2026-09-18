@@ -3,119 +3,335 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sistema de gestión de pedidos y ventas para un local de comida.">
-  <title>Comanda | Gestión de pedidos y ventas</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Sistema de gestión de pedidos y ventas para un local de comida. Tecnología web con carrito, pedidos, control de stock y paneles por rol.">
+  <title>Sistema de gestión de pedidos y ventas para un local de comida</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="bootstrap-overrides.css">
 </head>
 <body>
-  <header class="encabezado">
-    <div class="contenedor barra-navegacion">
-      <a class="marca" href="#inicio">COMANDA<span>.</span></a>
-      <nav aria-label="Navegación principal">
-        <a href="#inicio">Inicio</a>
-        <a href="#acceso">Acceso</a>
-        <a href="#productos">Productos</a>
-        <a href="#pedidos">Pedidos</a>
-        <a href="#ventas">Ventas</a>
-      </nav>
-      <a class="boton boton-pequeno" href="#nuevo-pedido">Nuevo pedido</a>
-    </div>
+  <header class="site-header sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+      <div class="container py-2">
+        <a class="navbar-brand brand" href="#inicio">COMANDA<span>.</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainMenu">
+          <ul class="navbar-nav mx-auto gap-lg-3">
+            <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#cliente">Cliente</a></li>
+            <li class="nav-item"><a class="nav-link" href="#empleado">Empleado</a></li>
+            <li class="nav-item"><a class="nav-link" href="#repartidor">Repartidor</a></li>
+            <li class="nav-item"><a class="nav-link" href="#admin">Admin</a></li>
+            <li class="nav-item"><a class="nav-link" href="#equipo">Equipo</a></li>
+          </ul>
+          <button class="btn btn-primary" type="button" id="btnNuevoPedido">Nuevo pedido</button>
+        </div>
+      </div>
+    </nav>
   </header>
 
   <main id="inicio">
-    <section class="hero">
-      <div class="contenedor hero-contenido">
-        <div>
-          <p class="etiqueta">Sistema de gestión para tu local</p>
-          <h1>Todo pedido bajo control.</h1>
-          <p class="hero-texto">Centralizá clientes, productos, pedidos y ventas en un solo lugar para trabajar con más orden y atender mejor.</p>
-          <div class="acciones">
-            <a class="boton" href="#nuevo-pedido">Registrar pedido</a>
-            <a class="enlace" href="#como-funciona">Conocer el sistema <span aria-hidden="true">→</span></a>
+    <section class="hero py-5">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <p class="eyebrow">Sistema de gestión para tu local</p>
+            <h1>Pedidos, ventas y operación centralizada.</h1>
+            <p class="lead text-muted">Un sistema para gestionar pedidos, clientes, entregas, pagos, stock y ventas sin depender de WhatsApp, llamadas ni anotaciones manuales.</p>
+            <div class="d-flex flex-wrap gap-3 mt-4">
+              <a href="#cliente" class="btn btn-primary">Hacer pedido</a>
+              <a href="#admin" class="btn btn-outline-secondary">Panel admin</a>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="summary-card">
+              <div class="d-flex justify-content-between small text-uppercase text-muted">
+                <span>Resumen del día</span>
+                <span class="text-success">● En actividad</span>
+              </div>
+              <div class="summary-total mt-4">
+                <strong>$125.000</strong>
+                <span>Ventas hoy</span>
+              </div>
+              <div class="summary-metrics mt-4">
+                <div><strong>32</strong><span>Pedidos</span></div>
+                <div><strong>7</strong><span>Pendientes</span></div>
+                <div><strong>16</strong><span>Entregados</span></div>
+              </div>
+              <div class="progress mt-4" aria-label="Estado del día">
+                <div class="progress-bar"></div>
+              </div>
+            </div>
           </div>
         </div>
-        <aside class="resumen" aria-label="Resumen de actividad">
-          <div class="resumen-cabecera"><span>Resumen de hoy</span><span class="estado">● En actividad</span></div>
-          <div class="resumen-total"><strong>$ 186.400</strong><span>Ventas del día</span></div>
-          <div class="metricas">
-            <div><strong>24</strong><span>Pedidos</span></div>
-            <div><strong>08</strong><span>En preparación</span></div>
-            <div><strong>16</strong><span>Entregados</span></div>
+      </div>
+    </section>
+
+    <section class="py-5 section-client" id="cliente">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Cliente</p>
+            <h2>Tu pedido, en pocos pasos</h2>
           </div>
-          <div class="barra"><span></span></div>
-          <p class="nota">La información se actualiza con cada pedido registrado.</p>
-        </aside>
-      </div>
-    </section>
-
-    <section class="seccion acceso-seccion" id="acceso">
-      <div class="contenedor acceso-contenido">
-        <div>
-          <p class="etiqueta">Ingreso al sistema</p>
-          <h2>Una entrada para cada usuario.</h2>
-          <p>El acceso determina las opciones disponibles según el tipo de cuenta y mantiene organizada la información del local.</p>
+          <p class="mb-0 text-muted">El cliente no necesita iniciar sesión. Puede explorar el menú, armar su carrito y confirmar la compra.</p>
         </div>
-        <form class="formulario-acceso" action="#panel-usuario" method="get">
-          <label for="usuario">Correo o nombre de usuario</label>
-          <input id="usuario" name="usuario" type="text" placeholder="nombre@correo.com" required>
-          <label for="contrasena">Contraseña</label>
-          <input id="contrasena" name="contrasena" type="password" placeholder="Ingresá tu contraseña" required>
-          <button class="boton" type="submit">Iniciar sesión</button>
-          <a class="enlace" href="#registro">¿Sos cliente nuevo? Registrate <span aria-hidden="true">→</span></a>
-        </form>
-      </div>
-    </section>
 
-    <section class="seccion roles-seccion" id="panel-usuario">
-      <div class="contenedor">
-        <div class="encabezado-seccion"><div><p class="etiqueta">Accesos por rol</p><h2>Cada equipo ve lo que necesita.</h2></div><p>Las cuentas internas son creadas por el administrador. Los clientes pueden registrarse desde el sistema.</p></div>
-        <div class="roles-grid">
-          <article class="rol rol-cliente"><span class="rol-numero">01 · Cliente</span><h3>Comprar y seguir</h3><p>Puede ver el menú, realizar pedidos, consultar pedidos anteriores, revisar su estado y administrar su dirección.</p></article>
-          <article class="rol"><span class="rol-numero">02 · Administrador</span><h3>Controlar el negocio</h3><p>Gestiona productos, categorías, stock, pedidos, ventas, empleados y estadísticas. Su cuenta no se registra libremente.</p></article>
-          <article class="rol"><span class="rol-numero">03 · Empleado</span><h3>Organizar pedidos</h3><p>Visualiza pedidos nuevos, los confirma, actualiza sus estados y consulta los productos para prepararlos.</p></article>
-          <article class="rol"><span class="rol-numero">04 · Repartidor</span><h3>Completar entregas</h3><p>Consulta los pedidos asignados y su dirección, cambia el estado a “En camino” y marca la entrega como realizada.</p></article>
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+              <div class="card-body p-4">
+                <div class="d-flex flex-wrap gap-2 mb-4" id="productFilters">
+                  <button class="btn btn-sm btn-primary filter-btn active" data-filter="todos">Todos</button>
+                  <button class="btn btn-sm btn-outline-secondary filter-btn" data-filter="hamburguesas">Hamburguesas</button>
+                  <button class="btn btn-sm btn-outline-secondary filter-btn" data-filter="pizzas">Pizzas</button>
+                  <button class="btn btn-sm btn-outline-secondary filter-btn" data-filter="frescos">Frescos</button>
+                  <button class="btn btn-sm btn-outline-secondary filter-btn" data-filter="bebidas">Bebidas</button>
+                </div>
+                <div id="productGrid" class="row g-3"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <aside class="card shadow-sm border-0 sticky-top aside-cart">
+              <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h3 class="h5 mb-0">Carrito</h3>
+                  <span class="badge bg-dark" id="cartBadge">0 items</span>
+                </div>
+                <div id="cartItems" class="cart-items"></div>
+                <div class="cart-summary mt-3 pt-3 border-top">
+                  <div class="d-flex justify-content-between">
+                    <span>Subtotal</span>
+                    <strong id="cartSubtotal">$0</strong>
+                  </div>
+                  <div class="d-flex justify-content-between mt-2">
+                    <span>Envío</span>
+                    <strong id="cartShipping">$0</strong>
+                  </div>
+                  <div class="d-flex justify-content-between mt-2 total-line">
+                    <span>Total</span>
+                    <strong id="cartTotal">$0</strong>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <div class="order-form card mt-4 shadow-sm border-0">
+          <div class="card-body p-4">
+            <h3 class="h4 mb-3">Confirmar pedido</h3>
+            <form id="checkoutForm">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Tipo de entrega</label>
+                  <select class="form-select" id="deliveryType">
+                    <option value="retiro">Retiro en el local</option>
+                    <option value="domicilio">Envío a domicilio</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Método de pago</label>
+                  <select class="form-select" id="paymentMethod">
+                    <option value="efectivo">Efectivo</option>
+                    <option value="transferencia">Transferencia</option>
+                    <option value="tarjeta">Tarjeta</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="clientName" placeholder="Ej: Juan Pérez">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Número de teléfono</label>
+                  <input type="tel" class="form-control" id="clientPhone" placeholder="Ej: 11 5555-4444">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Dirección</label>
+                  <input type="text" class="form-control" id="clientAddress" placeholder="Ej: Av. Siempreviva 123">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Barrio / localidad</label>
+                  <input type="text" class="form-control" id="clientZone" placeholder="Ej: Centro">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Referencia opcional</label>
+                  <textarea class="form-control" id="clientReference" rows="2" placeholder="Ej: Casa verde, portón de hierro"></textarea>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Observaciones del pedido</label>
+                  <textarea class="form-control" id="orderNote" rows="2" placeholder="Ej: Sin cebolla, agregar mayonesa"></textarea>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-3">
+                <div id="checkoutMessage" class="text-danger small fw-bold"></div>
+                <button type="submit" class="btn btn-success">Confirmar pedido</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="status-lookup mt-4 card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <h3 class="h5 mb-3">Consultar estado de mi pedido</h3>
+            <div class="row g-3 align-items-end">
+              <div class="col-md-8">
+                <label class="form-label">Número de pedido</label>
+                <input type="text" class="form-control" id="statusInput" placeholder="Ej: PEDIDO #025">
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary w-100" type="button" id="btnCheckStatus">Consultar</button>
+              </div>
+            </div>
+            <div id="statusResult" class="mt-4"></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="seccion registro-seccion" id="registro">
-      <div class="contenedor registro-contenido"><div><p class="etiqueta">Registro de clientes</p><h2>Crear una cuenta para pedir.</h2><p>El cliente podrá registrarse con nombre, correo, contraseña, teléfono y dirección de entrega.</p></div><div class="datos-registro"><span>Nombre y apellido</span><span>Correo electrónico</span><span>Teléfono y dirección</span><a class="enlace" href="#acceso">Ir al acceso <span aria-hidden="true">→</span></a></div></div>
-    </section>
-
-    <section class="seccion" id="como-funciona">
-      <div class="contenedor">
-        <div class="encabezado-seccion"><div><p class="etiqueta">Organización diaria</p><h2>Una vista clara del negocio.</h2></div><p>Las herramientas principales para que el equipo pueda registrar, consultar y actualizar la información del local.</p></div>
-        <div class="modulos">
-          <article class="modulo modulo-destacado"><span class="icono">01</span><h3>Pedidos</h3><p>Registrá cada pedido con los datos del cliente, productos, cantidades, total y estado.</p><a class="enlace" href="#pedidos">Gestionar pedidos <span aria-hidden="true">→</span></a></article>
-          <article class="modulo"><span class="icono">02</span><h3>Productos y stock</h3><p>Consultá el menú disponible, actualizá precios y controlá el stock de cada producto.</p><a class="enlace" href="#productos">Ver productos <span aria-hidden="true">→</span></a></article>
-          <article class="modulo"><span class="icono">03</span><h3>Ventas</h3><p>Revisá las ventas realizadas y obtené información para tomar mejores decisiones.</p><a class="enlace" href="#ventas">Consultar ventas <span aria-hidden="true">→</span></a></article>
+    <section class="py-5 section-team" id="equipo">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Trabajo práctico</p>
+            <h2>Equipo y tecnologías</h2>
+          </div>
+          <p class="mb-0 text-muted">Una solución frontend colaborativa para centralizar la operación del local.</p>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="team-card h-100">
+              <span class="team-number">01</span>
+              <h3 class="h5 mt-4">Lazarte Gastón</h3>
+              <p class="text-muted mb-0">Integración general, lógica de pedidos y persistencia.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="team-card h-100">
+              <span class="team-number">02</span>
+              <h3 class="h5 mt-4">Lazarte Karina Daniela</h3>
+              <p class="text-muted mb-0">Diseño de interfaz, formularios y experiencia del cliente.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="team-card h-100">
+              <span class="team-number">03</span>
+              <h3 class="h5 mt-4">Gómez Gonzalo Benjamín</h3>
+              <p class="text-muted mb-0">Paneles por rol, gestión de productos y pruebas funcionales.</p>
+            </div>
+          </div>
+        </div>
+        <div class="technology-strip mt-4">
+          <strong>Stack implementado</strong>
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>Bootstrap 5.3.3</span>
+          <span>JavaScript</span>
+          <span>localStorage</span>
         </div>
       </div>
     </section>
 
-    <section class="seccion seccion-productos" id="productos">
-      <div class="contenedor">
-        <div class="encabezado-seccion"><div><p class="etiqueta">Menú del local</p><h2>Productos destacados</h2></div><button class="boton-secundario" type="button">+ Agregar producto</button></div>
-        <div class="tabla-contenedor"><table><thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Estado</th></tr></thead><tbody><tr><td><strong>Hamburguesa completa</strong></td><td>Hamburguesas</td><td>$ 5.500</td><td>18 unidades</td><td><span class="etiqueta-estado disponible">Disponible</span></td></tr><tr><td><strong>Pizza muzzarella</strong></td><td>Pizzas</td><td>$ 7.000</td><td>12 unidades</td><td><span class="etiqueta-estado disponible">Disponible</span></td></tr><tr><td><strong>Ensalada de estación</strong></td><td>Platos frescos</td><td>$ 4.800</td><td>03 unidades</td><td><span class="etiqueta-estado bajo">Stock bajo</span></td></tr></tbody></table></div>
+    <section class="py-5 section-panel" id="empleado">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Empleado</p>
+            <h2>Panel del empleado</h2>
+          </div>
+        </div>
+        <div class="login-panel card shadow-sm border-0 mb-4">
+          <div class="card-body p-4">
+            <div class="row g-3 align-items-end">
+              <div class="col-md-4">
+                <label class="form-label">Usuario</label>
+                <input type="text" id="employeeUser" class="form-control" value="empleado">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Contraseña</label>
+                <input type="password" id="employeePass" class="form-control" value="1234">
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary w-100" type="button" id="btnEmployeeLogin">Ingresar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="employeePanel" class="panel-content d-none"></div>
       </div>
     </section>
 
-    <section class="seccion pedidos-seccion" id="pedidos">
-      <div class="contenedor columnas">
-        <div><p class="etiqueta">Seguimiento</p><h2>Pedidos recientes</h2><p>Consultá el estado de cada pedido desde que ingresa hasta que se entrega.</p></div>
-        <div class="lista-pedidos"><article><div><strong>#00024 · Lucía Fernández</strong><p>2 hamburguesas completas · Envío a domicilio</p></div><span class="etiqueta-estado preparacion">En preparación</span></article><article><div><strong>#00023 · Martín González</strong><p>1 pizza muzzarella · Retira en el local</p></div><span class="etiqueta-estado entregado">Entregado</span></article><article><div><strong>#00022 · Sofía Ramírez</strong><p>1 ensalada de estación · Envío a domicilio</p></div><span class="etiqueta-estado pendiente">Pendiente</span></article></div>
+    <section class="py-5 section-panel" id="repartidor">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Repartidor</p>
+            <h2>Panel del repartidor</h2>
+          </div>
+        </div>
+        <div class="login-panel card shadow-sm border-0 mb-4">
+          <div class="card-body p-4">
+            <div class="row g-3 align-items-end">
+              <div class="col-md-4">
+                <label class="form-label">Usuario</label>
+                <input type="text" id="deliveryUser" class="form-control" value="repartidor">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Contraseña</label>
+                <input type="password" id="deliveryPass" class="form-control" value="1234">
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary w-100" type="button" id="btnDeliveryLogin">Ingresar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="deliveryPanel" class="panel-content d-none"></div>
       </div>
     </section>
 
-    <section class="seccion ventas-seccion" id="ventas">
-      <div class="contenedor ventas-contenido"><div><p class="etiqueta">Información para decidir</p><h2>Conocé el movimiento de tu local.</h2><p>El registro ordenado permite consultar las ventas diarias, identificar los productos más solicitados y detectar faltantes de stock.</p></div><div class="grafico" aria-label="Gráfico ilustrativo de ventas semanales"><div class="barras"><span style="height: 45%"></span><span style="height: 62%"></span><span style="height: 55%"></span><span style="height: 78%"></span><span style="height: 68%"></span><span style="height: 92%"></span><span style="height: 82%"></span></div><div class="dias"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div></div></div>
-    </section>
-
-    <section class="seccion nuevo-pedido" id="nuevo-pedido">
-      <div class="contenedor formulario-intro"><p class="etiqueta">Próximo paso</p><h2>Preparados para registrar el primer pedido.</h2><p>Esta maqueta define la estructura inicial. En las próximas etapas se incorporarán formularios, persistencia de datos y usuarios.</p><a class="boton" href="#inicio">Volver al inicio</a></div>
+    <section class="py-5 section-panel" id="admin">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Administrador</p>
+            <h2>Panel del administrador</h2>
+          </div>
+        </div>
+        <div class="login-panel card shadow-sm border-0 mb-4">
+          <div class="card-body p-4">
+            <div class="row g-3 align-items-end">
+              <div class="col-md-4">
+                <label class="form-label">Usuario</label>
+                <input type="text" id="adminUser" class="form-control" value="admin">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Contraseña</label>
+                <input type="password" id="adminPass" class="form-control" value="1234">
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary w-100" type="button" id="btnAdminLogin">Ingresar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="adminPanel" class="panel-content d-none"></div>
+      </div>
     </section>
   </main>
 
-  <footer class="pie"><div class="contenedor pie-contenido"><div><a class="marca" href="#inicio">COMANDA<span>.</span></a><p>Sistema de gestión de pedidos y ventas.</p></div><div><p>Trabajo Práctico N.º 1 · Programación IV C</p><p>Lazarte Gastón · Lazarte Karina · Gómez Gonzalo</p></div></div></footer>
+  <footer class="site-footer py-4 mt-5">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3 text-muted small">
+      <span>© 2026 COMANDA</span>
+      <span>Sistema de gestión de pedidos y ventas para un local de comida</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+
