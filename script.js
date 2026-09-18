@@ -19,7 +19,7 @@ const defaultState = {
   orders: [
     {
       number: 25,
-      client: 'Juan Pérez',
+      client: 'Gaston Lazarte',
       phone: '1122334455',
       address: 'Av. Rivadavia 1234',
       zone: 'Centro',
