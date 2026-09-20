@@ -58,14 +58,14 @@ El proyecto permite gestionar:
 
 ### Aplicación de Bootstrap
 
-Bootstrap 5.3.3 se incorpora desde CDN en `index.html` y se utiliza en:
+Bootstrap 5.3.3 se incorpora desde CDN en `html/index.html` y se utiliza en:
 
 - grilla responsive con `container`, `row` y `col-*`
 - navegación responsive con `navbar`, `navbar-toggler` y `collapse`
 - botones, formularios, tarjetas, badges, alertas y tablas
 - utilidades de espaciado, flexbox, colores y visibilidad como `d-flex`, `gap-*`, `p-*` y `d-none`
 
-Los estilos propios de la identidad visual y los ajustes de componentes están en `bootstrap-overrides.css`.
+Los estilos propios de la identidad visual y los ajustes de componentes están en `css/bootstrap-overrides.css`.
 
 ## Estrategia SEO
 
@@ -109,10 +109,15 @@ En una publicación real se recomienda conectar Google Search Console y una herr
 
 ```text
 Sist. de pedidos y ventas local de comida/
-├── index.html
-├── script.js
-├── bootstrap-overrides.css
-├── style.css
+├── html/
+│   ├── index.html
+│   └── panel.html
+├── js/
+│   ├── script.js
+│   └── panel.js
+├── css/
+│   ├── bootstrap-overrides.css
+│   └── style.css
 ├── img/
 ├── README.md
 └── .gitignore
@@ -126,11 +131,11 @@ Sist. de pedidos y ventas local de comida/
 
 ## Cómo probar el proyecto
 
-1. Abrir `index.html` en el navegador.
+1. Abrir `html/index.html` en el navegador.
 2. Agregar productos al carrito.
 3. Confirmar un pedido como cliente.
 4. Consultar el estado por número de pedido.
-5. Ingresar con las credenciales de prueba para cada rol.
+5. Ingresar al panel desde `html/panel.html` y elegir el rol correspondiente.
 
 ## Estado del proyecto
 

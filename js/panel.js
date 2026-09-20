@@ -113,6 +113,11 @@ function escapeHtml(value = '') {
     .replace(/'/g, '&#039;');
 }
 
+function resolveAssetPath(path = '') {
+  if (!path || /^(https?:|data:|\/|\.\.\/)/.test(path)) return path;
+  return `${window.location.pathname.includes('/html/') ? '../' : ''}${path}`;
+}
+
 function getCartSubtotal() {
   return state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 }
@@ -137,7 +142,7 @@ function renderProducts() {
     return `
       <div class="col-md-6 col-xl-4">
         <div class="product-card card h-100 shadow-sm border-0">
-          <img class="card-img-top" src="${product.image}" alt="${product.name}">
+          <img class="card-img-top" src="${resolveAssetPath(product.image)}" alt="${product.name}">
           <div class="card-body d-flex flex-column">
             <div class="d-flex justify-content-between align-items-start gap-2">
               <h3 class="h6 mb-0">${escapeHtml(product.name)}</h3>
@@ -636,64 +641,55 @@ function renderAdminPanel() {
   });
 }
 
-function bindButtons() {
-  document.getElementById('btnNuevoPedido').addEventListener('click', () => {
-    document.getElementById('cliente').scrollIntoView({ behavior: 'smooth' });
-  });
+const panelRoles = {
+  empleado: { title: 'Panel del empleado', description: 'Gestioná los pedidos y actualizá su estado.', username: 'empleado', render: renderEmployeePanel, panel: 'employeePanel' },
+  repartidor: { title: 'Panel del repartidor', description: 'Consultá tus entregas y actualizá su estado.', username: 'repartidor', render: renderDeliveryPanel, panel: 'deliveryPanel' },
+  admin: { title: 'Panel del administrador', description: 'Controlá productos, stock y ventas.', username: 'admin', render: renderAdminPanel, panel: 'adminPanel' }
+};
 
-  document.getElementById('productFilters').addEventListener('click', (event) => {
-    const button = event.target.closest('.filter-btn');
-    if (!button) return;
-    state.activeFilter = button.dataset.filter;
-    document.querySelectorAll('.filter-btn').forEach((element) => {
-      element.classList.toggle('active', element === button);
-      element.classList.toggle('btn-primary', element === button);
-      element.classList.toggle('btn-outline-secondary', element !== button);
-    });
-    renderProducts();
-  });
+function updatePanelRole() {
+  const role = document.getElementById('panelRole').value;
+  const config = panelRoles[role];
+  document.getElementById('panelTitle').textContent = config.title;
+  document.getElementById('panelDescription').textContent = config.description;
+  document.getElementById('panelUser').value = config.username;
+  document.getElementById('panelPass').value = '1234';
+  document.getElementById('panelMessage').textContent = '';
+}
 
-  document.getElementById('checkoutForm').addEventListener('submit', checkoutOrder);
-  document.getElementById('deliveryType').addEventListener('change', renderCart);
-  document.getElementById('btnCheckStatus').addEventListener('click', () => renderOrderStatus(document.getElementById('statusInput').value.replace(/[^0-9]/g, '')));
-  document.getElementById('btnEmployeeLogin').addEventListener('click', () => {
-    const user = document.getElementById('employeeUser').value.trim();
-    const pass = document.getElementById('employeePass').value.trim();
-    if (loginUser(user, pass, 'empleado')) {
-      renderEmployeePanel();
+function hideRolePanels() {
+  Object.values(panelRoles).forEach((config) => {
+    document.getElementById(config.panel).classList.add('d-none');
+  });
+}
+
+function initPanel() {
+  const roleSelect = document.getElementById('panelRole');
+  const roleFromUrl = new URLSearchParams(window.location.search).get('role');
+  roleSelect.value = panelRoles[roleFromUrl] ? roleFromUrl : 'empleado';
+  updatePanelRole();
+  roleSelect.addEventListener('change', updatePanelRole);
+
+  document.getElementById('btnPanelLogin').addEventListener('click', () => {
+    const role = roleSelect.value;
+    const config = panelRoles[role];
+    const user = document.getElementById('panelUser').value.trim();
+    const pass = document.getElementById('panelPass').value.trim();
+    const message = document.getElementById('panelMessage');
+    hideRolePanels();
+
+    if (loginUser(user, pass, role)) {
+      message.className = 'small fw-bold mb-3 text-success';
+      message.textContent = 'Acceso correcto.';
+      config.render();
     } else {
-      document.getElementById('employeePanel').classList.remove('d-none');
-      document.getElementById('employeePanel').innerHTML = '<div class="alert alert-danger">Credenciales incorrectas.</div>';
-    }
-  });
-
-  document.getElementById('btnDeliveryLogin').addEventListener('click', () => {
-    const user = document.getElementById('deliveryUser').value.trim();
-    const pass = document.getElementById('deliveryPass').value.trim();
-    if (loginUser(user, pass, 'repartidor')) {
-      renderDeliveryPanel();
-    } else {
-      document.getElementById('deliveryPanel').classList.remove('d-none');
-      document.getElementById('deliveryPanel').innerHTML = '<div class="alert alert-danger">Credenciales incorrectas.</div>';
-    }
-  });
-
-  document.getElementById('btnAdminLogin').addEventListener('click', () => {
-    const user = document.getElementById('adminUser').value.trim();
-    const pass = document.getElementById('adminPass').value.trim();
-    if (loginUser(user, pass, 'admin')) {
-      renderAdminPanel();
-    } else {
-      document.getElementById('adminPanel').classList.remove('d-none');
-      document.getElementById('adminPanel').innerHTML = '<div class="alert alert-danger">Credenciales incorrectas.</div>';
+      const panel = document.getElementById(config.panel);
+      panel.classList.remove('d-none');
+      panel.innerHTML = '<div class="alert alert-danger">Credenciales incorrectas.</div>';
+      message.className = 'small fw-bold mb-3 text-danger';
+      message.textContent = '';
     }
   });
 }
 
-function init() {
-  renderProducts();
-  renderCart();
-  bindButtons();
-}
-
-init();
+initPanel();
