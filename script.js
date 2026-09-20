@@ -1,14 +1,23 @@
 const STATUS_FLOW = ['NUEVO', 'CONFIRMADO', 'EN PREPARACIÓN', 'LISTO', 'EN CAMINO', 'ENTREGADO'];
 const STORAGE_KEY = 'comanda-local-state-v1';
+const productImagePaths = {
+  1: 'img/hamburguesa-completa.jpg',
+  2: 'img/pizza-muzzarella.jpg',
+  3: 'img/ensalada-estacion.jpg',
+  4: 'img/limonada-casera.jpg',
+  5: 'img/papas-fritas.jpg',
+  6: 'img/milanesa-con-papas.jpg',
+  new: 'img/producto-nuevo.jpg'
+};
 
 const defaultState = {
   products: [
-    { id: 1, name: 'Hamburguesa completa', category: 'hamburguesas', price: 5500, description: 'Carne, queso, tomate, lechuga y salsa casera.', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80', available: true, stock: 18 },
-    { id: 2, name: 'Pizza muzzarella', category: 'pizzas', price: 7000, description: 'Pizza clásica con salsa, muzzarella y albahaca.', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80', available: true, stock: 12 },
-    { id: 3, name: 'Ensalada de estación', category: 'frescos', price: 4800, description: 'Mix de hojas frescas, tomate, cebolla y aderezo.', image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=900&q=80', available: true, stock: 3 },
-    { id: 4, name: 'Limonada casera', category: 'bebidas', price: 1800, description: 'Bebida fresca natural con limón.', image: 'https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=900&q=80', available: true, stock: 20 },
-    { id: 5, name: 'Papas fritas', category: 'frescos', price: 2600, description: 'Porción crocante para acompañar.', image: 'https://images.unsplash.com/photo-1576100406425-022a92b659f3?auto=format&fit=crop&w=900&q=80', available: true, stock: 14 },
-    { id: 6, name: 'Milanesa con papas', category: 'hamburguesas', price: 6300, description: 'Plato completo con papas y guarnición.', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80', available: true, stock: 8 }
+    { id: 1, name: 'Hamburguesa completa', category: 'hamburguesas', price: 5500, description: 'Carne, queso, tomate, lechuga y salsa casera.', image: productImagePaths[1], available: true, stock: 18 },
+    { id: 2, name: 'Pizza muzzarella', category: 'pizzas', price: 7000, description: 'Pizza clásica con salsa, muzzarella y albahaca.', image: productImagePaths[2], available: true, stock: 12 },
+    { id: 3, name: 'Ensalada de estación', category: 'frescos', price: 4800, description: 'Mix de hojas frescas, tomate, cebolla y aderezo.', image: productImagePaths[3], available: true, stock: 3 },
+    { id: 4, name: 'Limonada casera', category: 'bebidas', price: 1800, description: 'Bebida fresca natural con limón.', image: productImagePaths[4], available: true, stock: 20 },
+    { id: 5, name: 'Papas fritas', category: 'frescos', price: 2600, description: 'Porción crocante para acompañar.', image: productImagePaths[5], available: true, stock: 14 },
+    { id: 6, name: 'Milanesa con papas', category: 'hamburguesas', price: 6300, description: 'Plato completo con papas y guarnición.', image: productImagePaths[6], available: true, stock: 8 }
   ],
   categories: ['hamburguesas', 'pizzas', 'frescos', 'bebidas'],
   users: {
@@ -72,7 +81,10 @@ function loadState() {
     return {
       ...structuredClone(defaultState),
       ...parsed,
-      products: Array.isArray(parsed.products) && parsed.products.length ? parsed.products : structuredClone(defaultState.products),
+      products: (Array.isArray(parsed.products) && parsed.products.length ? parsed.products : structuredClone(defaultState.products)).map((product) => ({
+        ...product,
+        image: product.image?.includes('images.unsplash.com') ? productImagePaths[product.id] || productImagePaths.new : product.image || productImagePaths.new
+      })),
       orders: Array.isArray(parsed.orders) ? parsed.orders : structuredClone(defaultState.orders),
       cart: Array.isArray(parsed.cart) ? parsed.cart : []
     };
@@ -577,7 +589,7 @@ function renderAdminPanel() {
       category,
       price,
       description: 'Producto agregado por el administrador.',
-      image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80',
+      image: productImagePaths.new,
       available: true,
       stock
     });
