@@ -58,7 +58,7 @@ El proyecto permite gestionar:
 
 ### Aplicación de Bootstrap
 
-Bootstrap 5.3.3 se incorpora desde CDN en `html/index.html` y se utiliza en:
+Bootstrap 5.3.3 se incorpora desde CDN en `html/comanda.html` y se utiliza en:
 
 - grilla responsive con `container`, `row` y `col-*`
 - navegación responsive con `navbar`, `navbar-toggler` y `collapse`
@@ -110,7 +110,7 @@ En una publicación real se recomienda conectar Google Search Console y una herr
 ```text
 Sist. de pedidos y ventas local de comida/
 ├── html/
-│   ├── index.html
+│   ├── comanda.html
 │   └── panel.html
 ├── js/
 │   ├── script.js
@@ -131,7 +131,7 @@ Sist. de pedidos y ventas local de comida/
 
 ## Cómo probar el proyecto
 
-1. Abrir `html/index.html` en el navegador.
+1. Abrir `html/comanda.html` en el navegador.
 2. Agregar productos al carrito.
 3. Confirmar un pedido como cliente.
 4. Consultar el estado por número de pedido.
